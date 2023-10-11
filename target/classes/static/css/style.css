@@ -1,0 +1,246 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #F7EFEA;
+}
+
+.nav-container {
+    background-image: url("../images/banner.jpg");
+    background-color: grey;
+    background-blend-mode: multiply;
+    background-size: cover;
+    /* filter: brightness(40%); */
+    height: 35vh;
+}
+
+.nav-title {
+    color: white;
+    font-size: 80px;
+    text-align: center;
+}
+
+.nav-container-logo {
+    margin: 1rem 2rem 0 1rem;
+    border-radius: 50%;
+}
+
+.logo {
+    width: 5rem;
+    border-radius: 100px;
+}
+
+.nav-container-button {
+    margin: 1rem 2rem 0 2rem;
+}
+
+.nav-btn {
+    border-style: none;
+    text-decoration: none;
+}
+
+
+.nav-inner-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-btn {
+    border-radius: 25px;
+    background-color: #F5BF00;
+    color: white;
+    padding: .5rem;
+}
+
+.main-container {
+    display: flex;
+}
+
+
+.recipe-container {
+    width: 75%;
+    margin-top: 2rem;
+}
+
+.recipe-outer-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* border:1px solid black; */
+}
+
+.recipe-inner-container {
+    margin: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recipe-container-title {
+    font-weight: 900;
+    color: #80423D;
+    font-size: 36px;
+    margin: .5rem;
+}
+
+.recipe-title {
+    font-weight: 600;
+    margin: 1rem auto;
+}
+
+.recipe-img {
+    width: 15rem;
+    height: auto;
+    border-radius: 50%;
+}
+
+.btn {
+    margin:.5rem auto;
+    border-radius: 25px;
+    border-style: none;
+    color: white;
+    text-decoration: none;
+
+}
+
+
+.btn-edit {
+    background-color: #DDA655;
+    /* color: white; */
+    padding: .5rem 1rem;
+}
+
+.btn-delete {
+    background-color: #E56353;
+    padding: .5rem 1rem;
+}
+
+.inventory-side {
+    width: 18%;
+    background-color: #FFD9AC;
+    font-size: 24px;
+    margin-right: 5%;
+    height: 65vh;
+}
+
+.inventory-title {
+    margin: 2rem 0 2rem 0rem;
+    padding: 0 0 2rem 2rem;
+    color: #6C6C6C;
+    font-weight: bold;
+    border-bottom: 1px solid #6C6C6C;
+}
+
+.inventory-list {
+    margin-left: 2rem;
+    list-style: none;
+    color: #6C6C6C;
+    font-weight: bold;
+}
+
+.inventory-list li {
+    margin-bottom: .5rem;
+}
+
+.add-recipe-btn {
+    border-radius: 50%;
+    border-style: none;
+    padding: 6rem 5rem;
+    font-size: 1rem;
+    border: 1px solid #969696;
+    text-decoration: none;
+    text-align: center;
+    color: #969696;
+}
+
+.inventory-btn-container {
+    margin: 9rem 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    float: left;
+}
+
+.add-inventory-btn {
+    display: inline-block;
+    background-color: #DDA655;
+    padding: .5rem 1rem;
+    font-size: 16px;
+}
+
+.update-inventory-btn {
+	display: inline-block;
+    background-color: #80423D;
+    padding: .5rem 1rem;
+    color: white; 
+    font-size: 16px;
+}
+
+/* form styling */
+
+.ingredient-container {
+	margin-top: 2rem;
+    width: 75%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.ingredient-container-title {
+
+    color: #80423D;
+    font-size: 250%;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    
+}
+
+.input-title {
+    color: #6C6C6C;
+    font-weight: 600;
+    font-size: 150%;
+    margin: 1rem auto;
+}
+
+.input-box {
+    width: 50%;
+    display: block;
+    border-radius: 25px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    width: 200px;
+    height: 25px;
+}
+
+.has-error {
+	color: red;
+}
+
+.form-buttons {
+    margin-top: 10%;
+    float: left;
+}
+
+.form-input {
+    margin-bottom: 1%;
+}
+
+.addrecipe-container-title {
+	font-weight: 900;
+    color: #80423D;
+    font-size: 36px;
+    margin: .5rem 2rem;
+   
+}
+
+.addrecipe-inner-container {
+    margin: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}

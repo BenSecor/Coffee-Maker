@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Welcome to the CSC326 CoffeeMaker</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <script
+        src="https://tildesites.bowdoin.edu/~k.preslermarshall/AngularJS/angular.min.js">
+    </script>
+    <script> 
+        /*<![CDATA[*/
+        var app = angular.module('myApp', []);
+        app.controller('indexCtrl', function($scope, $http) {
+            
+            $scope.inventory = {
+                ingredients: []
+            };
+
+            $scope.recipeObjects = [];
+
+            $scope.getInventory = function(){
+                $http.get("/api/v1/inventory").then((response) => {
+                    $scope.inventory = response.data;  
+                    console.log($scope.inventory)
+                }, function(rejection) {
+							console.error("Error while getting ingredients");  	
+                });
+            }
+
+            $scope.getInventory();
+
+
+            $scope.getRecipes = function(){
+                $http.get("/api/v1/recipes").then((response) => {
+                    $scope.recipeObjects = response.data;  
+                    console.log($scope.recipeObjects)
+                }, function(rejection) {
+							console.error("Error while getting ingredients");  	
+                });
+            }
+
+            $scope.deleteRecipe = function (recipe) {
+		        $http.delete("/api/v1/recipes/" + recipe)
+		            .then(
+		            function (response) {
+		            		console.log(response);
+		    				$scope.submissionSuccess=true;	
+		    				
+		                
+                        $scope.getRecipes();
+		            },
+		            function(rejection){
+		                console.error('Error while deleting recipe');
+		                console.log(rejection);
+		                
+						$scope.submissionSuccess=false;	
+		                
+		             	// Update recipe list
+				        $http.get("/api/v1/recipes").then(function (response) {
+			  				$scope.recipes = response.data;
+			  			});
+		            }
+		        );
+			}
+
+            const sidebar = document.querySelector(".inventory-side")
+			$scope.newHeight = document.querySelector('.inventory-side').offsetHeight * 1.4 + "px"
+			sidebar.style.setProperty('height', $scope.newHeight)
+
+            $scope.getRecipes();
+            
+            });
+        /*]]>*/
+        </script>
+    <div ng-app="myApp" class="generic-container ng-cloak"
+        ng-controller="indexCtrl as ctrl">
+        <div class="nav-container">
+            <nav class="nav-inner-container">
+                <div class="nav-container-logo">
+                    <a href="/">
+                        <img src="images/logo.png" alt="" class="logo">
+                    </a>
+                </div>
+                <div class="nav-container-button">
+                    <a href="makecoffee.html" class="nav-btn">Make Coffee</a>
+                </div>
+            </nav>
+            <h1 class="nav-title">COFFEE YOUR WAY</h1>
+        </div>
+
+        <section class="main-container">
+            <!-- Width 20% -->
+            <aside class="inventory-side">
+                <div class="inventory-title">
+                    Inventory
+                </div>
+                <ul class="inventory-list">
+                    <div ng-repeat="ingredient in inventory.ingredients track by $index">
+                        {{ingredient.ingredientType.name}}: {{ingredient.amount}}<br />
+                    </div>
+                </ul>
+                <div class="inventory-btn-container">
+                    <a href="addingredient.html" class="btn add-inventory-btn">
+                        Add Ingredients
+                    </a>
+                    <a href="inventory.html" class="btn update-inventory-btn">
+                        Update Inventory
+                    </a>
+                </div>
+            </aside>
+            <!-- Width 80% -->
+            <div class="recipe-container">
+                <h1 class="recipe-container-title">YOUR MIX</h1>
+                <div class="recipe-outer-container">
+                    <div class="recipe-inner-container" ng-repeat="recipe in recipeObjects track by $index">
+                        <img class="recipe-img" src="images/Coffee1.png" alt="">
+                        <p class="recipe-title">
+                            {{recipe.name}}
+                        </p>
+                        <div class="recipe-btn">
+                            <a href="editrecipe.html" class="btn btn-edit">Edit</a>
+                            <button class="btn btn-delete" ng-model="$parent.name" name="name"
+                                ng-click="deleteRecipe(recipe.name)">Delete</button>
+                        </div>
+                    </div>
+                    <div class="recipe-inner-container">
+                        <a class="add-recipe-btn" type="submit" href="addrecipe.html">
+                                +
+                            <br>
+                            Add Recipe
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+	
+    <!-- <ul>
+		<li><a href="inventory.html">Update Inventory</a></li>
+		<li><a href="recipe.html">Add a Recipe</a></li>
+		<li><a href="editrecipe.html">Edit Recipe</a></li>
+		<li><a href="deleterecipe.html">Delete Recipe</a></li>
+		<li><a href="makecoffee.html">Make Coffee</a></li>
+	</ul> -->
+</body>
+</html>

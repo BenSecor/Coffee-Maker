@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Welcome to the CSC326 CoffeeMaker</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <script
+		src="https://tildesites.bowdoin.edu/~k.preslermarshall/AngularJS/angular.min.js"></script>
+
+	<script>
+		/*<![CDATA[*/
+		var app = angular.module('myApp', []);
+		app.controller('addIngredientCtrl', function($scope, $http, $q) {
+
+            $scope.inventory = {
+                ingredients: []
+            };
+
+            $scope.getInventory = function(){
+                $http.get("/api/v1/inventory").then((response) => {
+                    $scope.inventory = response.data;  
+                    console.log($scope.inventory)
+                }, function(rejection) {
+							console.error("Error while adding ingredient");  	
+                });
+            }
+
+            $scope.getInventory();
+                
+
+			$scope.reset = function() {
+				$scope.ingredient = {
+					name : '',
+					amount : ''
+				};
+				if (undefined != $scope.addIngredientForm) {
+                    // reset Form
+					$scope.addIngredientForm.$setPristine(); 
+				}
+			}
+
+			$scope.submit = function() {
+				$scope.addIngredient();
+				$scope.reset();
+			}
+
+
+			$scope.addIngredient = function() {
+				$scope.success = false;
+				$scope.failure = false;
+				$http.post("/api/v1/inventory", $scope.ingredient).then(
+						function(success) {
+							$scope.success = true;
+							$scope.failure = false;
+                            $scope.getInventory();
+						}, function(rejection) {
+                            $scope.failure = true;
+                            $scope.success = false;
+							console.error("Error while adding ingredient");
+						});
+
+                
+			}
+
+			$scope.reset();
+            $scope.getInventory();
+            const sidebar = document.querySelector(".inventory-side")
+			$scope.newHeight = document.querySelector('.inventory-side').offsetHeight * 1.1 + "px"
+			sidebar.style.setProperty('height', $scope.newHeight)
+
+		});
+		/*]]>*/
+	</script>
+    <div ng-app="myApp" class="generic-container ng-cloak"
+    ng-controller="addIngredientCtrl as ctrl">
+    <div class="nav-container">
+        <nav class="nav-inner-container">
+            <div class="nav-container-logo">
+            	<a href="/">
+            		<img src="images/logo.png" alt="" class="logo">
+            	</a>
+            </div>
+            <div class="nav-container-button">
+                <a href="makecoffee.html" class="nav-btn">Make Coffee</a>
+            </div>
+        </nav>
+        <h1 class="nav-title">COFFEE YOUR WAY</h1>
+    </div>
+
+    <section class="main-container">
+        <!-- Width 20% -->
+        <aside class="inventory-side">
+            <div class="inventory-title">
+                Inventory
+            </div>
+            <ul class="inventory-list">
+                <div ng-repeat="ingredient in inventory.ingredients track by $index">
+                    {{ingredient.ingredientType.name}}:{{ingredient.amount}}<br />
+                </div>
+            </ul>            
+            <div class="inventory-btn-container">
+                <a href="addingredient.html" class="btn add-inventory-btn">
+                    Add Ingredients
+                </a>
+                <a href="inventory.html" class="btn update-inventory-btn">
+                    Update Inventory
+                </a>
+            </div>
+        </aside>
+        <!-- changes -->
+        <div class="ingredient-container">
+            <h1 class="ingredient-container-title">Add Ingredient</h1>
+            <div class="ingredient-outer-container">
+                <div class="ingredient-inner-container">
+                    <!-- must reconsider current tags and ng-model stuff -->
+                    <div class="form">
+                        <form ng-submit="submit()" name="addIngredientForm" class="form-horizontal">
+                            <div class="form-input">
+                                <label class="input-title" for="file">Name</label>
+                                <input type="text" ng-model="ingredient.ingredientType.name" name="name"
+                                    class="name form-control input-sm"
+                                    placeholder="Enter Ingredient name" required="0"/>
+                                <div class="has-error" ng-show="addIngredientForm.$dirty">
+                                    <span ng-show="addIngredientForm.type.$error.required">
+                                        This is a required field.
+                                    </span>
+                                    <span
+                                        ng-show="addIngredientForm.type.$invalid">
+                                        This field is invalid.
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-input">
+                                <label class="input-title" for="file">Amount</label>
+                                <input type="number" ng-model="ingredient.amount" name="amount"
+                                    class="quantity form-control input -sm"
+                                    placeholder="Enter amount" required="0" min = "0"/>
+                                <div class="has-error" ng-show="addIngredientForm.$dirty">
+                                    <span ng-show="addIngredientForm.amount.$error.required">
+                                        This is a required field.
+                                    </span>
+                                    <span ng-show="addIngredientForm.amount.$invalid">
+                                        This field is invalid.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-buttons floatRight">
+                                <input type="submit" value="Submit"
+                                    class="btn btn-edit"
+                                    ng-disabled="addIngredientForm.$invalid" />
+                                <button type="button" ng-click="reset()"
+                                    class="btn btn-delete"
+                                    ng-disabled="addIngredientForm.$pristine">Reset Form</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div ng-show = "success"> Ingredient created </div>
+                    <div ng-show = "failure"> ERROR </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+</body>
+</html>

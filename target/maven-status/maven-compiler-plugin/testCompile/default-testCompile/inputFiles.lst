@@ -1,0 +1,14 @@
+/Users/ben/git/project2-t-04/CoffeeMaker/src/test/java/edu/ncsu/csc/CoffeeMaker/common/TestUtils.java
+/Users/ben/git/project2-t-04/CoffeeMaker/src/test/java/edu/ncsu/csc/CoffeeMaker/DataGeneration/GenerateIngredients.java
+/Users/ben/git/project2-t-04/CoffeeMaker/src/test/java/edu/ncsu/csc/CoffeeMaker/unit/IngredientTest.java
+/Users/ben/git/project2-t-04/CoffeeMaker/src/test/java/edu/ncsu/csc/CoffeeMaker/unit/InventoryTest.java
+/Users/ben/git/project2-t-04/CoffeeMaker/src/test/java/edu/ncsu/csc/CoffeeMaker/unit/RecipeTest.java
+/Users/ben/git/project2-t-04/CoffeeMaker/src/test/java/edu/ncsu/csc/CoffeeMaker/api/APICoffeeTest.java
+/Users/ben/git/project2-t-04/CoffeeMaker/src/test/java/edu/ncsu/csc/CoffeeMaker/api/APIInventoryTest.java
+/Users/ben/git/project2-t-04/CoffeeMaker/src/test/java/edu/ncsu/csc/CoffeeMaker/DataGeneration/GenerateRecipeWithIngredients.java
+/Users/ben/git/project2-t-04/CoffeeMaker/src/test/java/edu/ncsu/csc/CoffeeMaker/api/APIRecipeTest.java
+/Users/ben/git/project2-t-04/CoffeeMaker/src/test/java/edu/ncsu/csc/CoffeeMaker/DataGeneration/GenerateIngredientTypes.java
+/Users/ben/git/project2-t-04/CoffeeMaker/src/test/java/edu/ncsu/csc/CoffeeMaker/TestDatabaseInteraction.java
+/Users/ben/git/project2-t-04/CoffeeMaker/src/test/java/edu/ncsu/csc/CoffeeMaker/TestConfig.java
+/Users/ben/git/project2-t-04/CoffeeMaker/src/test/java/edu/ncsu/csc/CoffeeMaker/DataGeneration/GenerateInventory.java
+/Users/ben/git/project2-t-04/CoffeeMaker/src/test/java/edu/ncsu/csc/CoffeeMaker/DataGeneration/GenerateRecipesSimple.java
